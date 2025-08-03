@@ -60,7 +60,7 @@
           Club Hippique de Colomiers
         </h1>
         <p class="text-sm md:text-xl mb-6 text-white/90 leading-relaxed max-w-sm sm:max-w-2xl mx-auto">
-          Un club en pleine nature et convivial pour tous les niveaux.
+          Le cadre idéal pour progresser à cheval, du loisir à la compétition.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <UButton 
@@ -116,7 +116,7 @@
               </div>
               <h3 class="text-xl font-bold text-gray-900 mb-4">Cours Poney Club</h3>
               <p class="text-gray-600 mb-6 leading-relaxed">
-                À partir de 7 ans. Apprentissage ludique et sécurisé les mercredis et samedis pour nos jeunes cavaliers.
+                Apprentissage ludique et sécurisé les mercredis et samedis pour nos jeunes cavaliers.
               </p>
             </div>
           </div>
