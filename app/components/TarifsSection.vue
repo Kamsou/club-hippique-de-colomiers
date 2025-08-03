@@ -60,7 +60,7 @@
               :icon="section.noteIcon || 'i-heroicons-information-circle'"
               color="blue"
               variant="subtle"
-              class="border-0 flex items-center justify-center gap-4 text-center mt-4"
+              class="border-0 flex items-center justify-center gap-4 text-center my-4 px-2"
             />
           </template>
         </UCard>
