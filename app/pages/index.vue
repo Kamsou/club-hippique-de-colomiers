@@ -379,6 +379,15 @@ import { NuxtImg } from '#components'
 import TarifsSection from '~/components/TarifsSection.vue'
 import { ref, onMounted, onUnmounted } from 'vue'
 
+useSeoMeta({
+  title: 'Club Hippique de Colomiers - Accueil',
+  meta: [
+    { name: 'description', content: 'Bienvenue au Club Hippique de Colomiers' },
+    { property: 'og:title', content: 'Club Hippique de Colomiers - Accueil' },
+    { property: 'og:description', content: 'Découvrez nos installations, nos cours et nos tarifs.' },
+  ]
+})
+
 const header = ref(null)
 const headerScrolled = ref(false)
 
