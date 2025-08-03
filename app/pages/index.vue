@@ -8,7 +8,8 @@
     >
       <div class="max-w-7xl mx-auto flex items-center justify-center sm:justify-between">
         <NuxtImg 
-          src="https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png" 
+          provider="cloudinary"
+          src="v1754221336/chc/chc-final-removebg-preview_bqtqnj.png" 
           alt="Logo Club Hippique de Colomiers" 
           class="h-16 w-auto transition-all duration-300"
           :class="headerScrolled ? 'filter-none' : 'filter brightness-0 invert'" 

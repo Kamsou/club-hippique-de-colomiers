@@ -30,14 +30,14 @@
           }"
         >
           <template #header>
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between py-2">
               <div class="flex items-center space-x-3 px-3">
                 <UIcon :name="getIconForSection(section.title)" class="w-6 h-6 text-primary" />
                 <h3 class="text-lg font-semibold text-gray-900">
                   {{ section.title }}
                 </h3>
               </div>
-              <UBadge v-if="section.highlight" :color="section.highlight.color" variant="subtle">
+              <UBadge v-if="section.highlight" :color="section.highlight.color" variant="subtle" class="text-sm">
                 {{ section.highlight.text }}
               </UBadge>
             </div>
@@ -60,7 +60,7 @@
               :icon="section.noteIcon || 'i-heroicons-information-circle'"
               color="blue"
               variant="subtle"
-              class="border-0 flex items-center justify-center gap-4 text-center px-4"
+              class="border-0 flex items-center justify-center gap-4 text-center mt-4"
             />
           </template>
         </UCard>
