@@ -176,7 +176,7 @@
               <div class="text-gray-600 font-medium">Cavaliers formés</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl md:text-4xl font-bold text-primary mb-2">~25</div>
+              <div class="text-3xl md:text-4xl font-bold text-primary mb-2">~50</div>
               <div class="text-gray-600 font-medium">Chevaux résidents</div>
             </div>
             <div class="text-center">

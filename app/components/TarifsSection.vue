@@ -120,7 +120,7 @@ const tarifs = [
     highlight: { text: 'Enfants', color: 'blue' }
   },
   {
-    title: 'Cours Baby Poneys',
+    title: 'Cours Petits Jockeys',
     items: [
       { label: 'Année', price: '500 €' },
       { label: 'Unité', price: '15 €' }
@@ -169,7 +169,7 @@ const getIconForSection = (title) => {
     'Cotisation annuelle': 'i-heroicons-identification',
     'Licence FFE': 'i-heroicons-document-text',
     'Cours Poney Club': 'i-heroicons-users',
-    'Cours Baby Poneys': 'i-heroicons-face-smile',
+    'Cours Petits Jockeys': 'i-heroicons-face-smile',
     'Cours particuliers': 'i-heroicons-user',
     'Pensions équidés': 'i-heroicons-home',
     'Location équidé': 'i-heroicons-calendar',
