@@ -376,15 +376,26 @@
 
 <script setup>
 import { NuxtImg } from '#components'
-import TarifsSection from '~/components/TarifsSection.vue'
-import { ref, onMounted, onUnmounted } from 'vue'
 
 useSeoMeta({
   title: 'Club Hippique de Colomiers - Accueil',
-  meta: [
-    { name: 'description', content: 'Bienvenue au Club Hippique de Colomiers' },
-    { property: 'og:title', content: 'Club Hippique de Colomiers - Accueil' },
-    { property: 'og:description', content: 'Découvrez nos installations, nos cours et nos tarifs.' },
+  description: 'Bienvenue au Club Hippique de Colomiers. Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
+  ogTitle: 'Club Hippique de Colomiers - Accueil',
+  ogDescription: 'Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
+  ogType: 'website',
+  ogUrl: 'https://clubhippiquedecolomiers.fr/',
+  ogImage: 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png',
+  ogImageAlt: 'Logo Club Hippique de Colomiers',
+  ogLocale: 'fr_FR',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Club Hippique de Colomiers - Accueil',
+  twitterDescription: 'Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
+  twitterImage: 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png'
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: 'https://clubhippiquedecolomiers.fr/' }
   ]
 })
 
