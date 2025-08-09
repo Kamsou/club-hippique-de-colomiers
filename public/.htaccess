@@ -1,0 +1,32 @@
+# Force HTTPS (Apache on o2switch) — proxy aware
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect HTTP to HTTPS (handles proxies/CDN)
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Canonical host — force apex (remove or invert if you prefer www)
+  RewriteCond %{HTTP_HOST} ^www\.clubhippiquedecolomiers\.fr$ [NC]
+  RewriteRule ^ https://clubhippiquedecolomiers.fr%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Security headers (and auto-upgrade mixed content)
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header always set Content-Security-Policy "upgrade-insecure-requests"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# SPA fallback (only if deploying a generated SPA with client routing)
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteBase /
+#   RewriteRule ^index\.html$ - [L]
+#   RewriteCond %{REQUEST_FILENAME} !-f
+#   RewriteCond %{REQUEST_FILENAME} !-d
+#   RewriteRule . /index.html [L]
+# </IfModule>
