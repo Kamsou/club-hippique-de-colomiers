@@ -1,3 +1,62 @@
+<script setup>
+import { NuxtImg } from '#components'
+
+useSeoMeta({
+  title: 'Club Hippique de Colomiers - Accueil',
+  description: 'Bienvenue au Club Hippique de Colomiers. Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
+  ogTitle: 'Club Hippique de Colomiers - Accueil',
+  ogDescription: 'Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
+  ogType: 'website',
+  ogUrl: 'https://clubhippiquedecolomiers.fr/',
+  ogImage: 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png',
+  ogImageAlt: 'Logo Club Hippique de Colomiers',
+  ogLocale: 'fr_FR',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Club Hippique de Colomiers - Accueil',
+  twitterDescription: 'Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
+  twitterImage: 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png'
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: 'https://clubhippiquedecolomiers.fr/' }
+  ]
+})
+
+const header = ref(null)
+const headerScrolled = ref(false)
+
+const handleScroll = () => {
+  const heroHeight = Math.max(window.innerHeight * 0.8, 600)
+  const scrollY = window.scrollY
+  
+  headerScrolled.value = scrollY > heroHeight - 100
+}
+
+const scrollToSection = (sectionId, event) => {
+  event.preventDefault()
+  
+  const element = document.getElementById(sectionId)
+  if (element) {
+    const headerHeight = 80 
+    const elementPosition = element.offsetTop - headerHeight
+    
+    window.scrollTo({
+      top: elementPosition,
+      behavior: 'smooth'
+    })
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+</script>
+
 <template>
   <div>
     <!-- Header transparent et adaptatif -->
@@ -135,7 +194,6 @@
             </div>
           </div>
 
-          <!-- Cours Propriétaires -->
           <div class="group relative bg-gradient-to-br from-slate-50 to-gray-50 rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100/50">
             <div class="absolute inset-0 bg-gradient-to-br from-slate-500/5 to-gray-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="relative z-10">
@@ -189,7 +247,6 @@
 
       <TarifsSection id="tarifs" />
 
-      <!-- Section Contact et Infos pratiques regroupées -->
       <section class="relative py-16" id="contact">
         <div class="text-center mb-12">
           <h2 class="text-4xl font-bold text-gray-900 mb-4">
@@ -255,7 +312,6 @@
             </UButton>
           </div>
 
-          <!-- Contact direct -->
           <div class="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-8 border border-primary/10">
             <div class="flex items-center mb-6">
               <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-700 rounded-xl flex items-center justify-center mr-4">
@@ -269,8 +325,8 @@
                 <UIcon name="i-heroicons-envelope" class="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <div class="font-semibold text-gray-900 mb-1">Email</div>
-                  <a href="mailto:contact@centreequestre.fr" class="text-primary hover:text-blue-700 transition-colors">
-                    contact@clubhippiquedecolomiers.fr
+                  <a href="mailto:clubhippiquecolomiers@gmail.com" class="text-primary hover:text-blue-700 transition-colors">
+                    clubhippiquecolomiers@gmail.com
                   </a>
                 </div>
               </div>
@@ -373,68 +429,6 @@
     </footer>
   </div>
 </template>
-
-<script setup>
-import { NuxtImg } from '#components'
-
-useSeoMeta({
-  title: 'Club Hippique de Colomiers - Accueil',
-  description: 'Bienvenue au Club Hippique de Colomiers. Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
-  ogTitle: 'Club Hippique de Colomiers - Accueil',
-  ogDescription: 'Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
-  ogType: 'website',
-  ogUrl: 'https://clubhippiquedecolomiers.fr/',
-  ogImage: 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png',
-  ogImageAlt: 'Logo Club Hippique de Colomiers',
-  ogLocale: 'fr_FR',
-  twitterCard: 'summary_large_image',
-  twitterTitle: 'Club Hippique de Colomiers - Accueil',
-  twitterDescription: 'Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
-  twitterImage: 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png'
-})
-
-useHead({
-  link: [
-    { rel: 'canonical', href: 'https://clubhippiquedecolomiers.fr/' }
-  ]
-})
-
-const header = ref(null)
-const headerScrolled = ref(false)
-
-const handleScroll = () => {
-  // Considère que l'image du hero fait 80vh de haut avec un minimum de 600px
-  const heroHeight = Math.max(window.innerHeight * 0.8, 600)
-  const scrollY = window.scrollY
-  
-  // Active le background quand on sort de l'image du hero
-  headerScrolled.value = scrollY > heroHeight - 100
-}
-
-const scrollToSection = (sectionId, event) => {
-  event.preventDefault()
-  
-  const element = document.getElementById(sectionId)
-  if (element) {
-    // Calcule la position en tenant compte du header fixe
-    const headerHeight = 80 // Hauteur approximative du header
-    const elementPosition = element.offsetTop - headerHeight
-    
-    window.scrollTo({
-      top: elementPosition,
-      behavior: 'smooth'
-    })
-  }
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
-</script>
 
 <style scoped>
 .text-primary {

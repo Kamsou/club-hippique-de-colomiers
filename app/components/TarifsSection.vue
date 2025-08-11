@@ -1,93 +1,3 @@
-<template>
-  <section id="tarifs" class="py-24 bg-gradient-to-br from-[#F4F1EE] to-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-      <!-- Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-playfair font-bold text-gray-900 mb-4">
-          Tarifs 2025
-        </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto font-inter">
-          Découvrez nos tarifs transparents et adaptés à tous les niveaux.
-        </p>
-      </div>
-
-      <!-- Tarifs Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <UCard
-          v-for="section in tarifs"
-          :key="section.title"
-          class="hover:shadow-xl hover:-translate-y-1 transition duration-300"
-          :ui="{
-            base: 'overflow-hidden',
-            background: 'bg-white',
-            divide: 'divide-y divide-gray-200',
-            ring: 'ring-1 ring-gray-200',
-            rounded: 'rounded-xl',
-            shadow: 'shadow-lg',
-            header: { padding: 'px-6 py-5' },
-            body: { padding: 'px-6 py-6' },
-            footer: { padding: 'px-6 py-5' }
-          }"
-        >
-          <template #header>
-            <div class="flex items-center justify-between py-2">
-              <div class="flex items-center space-x-3 px-3">
-                <UIcon :name="getIconForSection(section.title)" class="w-6 h-6 text-primary" />
-                <h3 class="text-lg font-semibold text-gray-900">
-                  {{ section.title }}
-                </h3>
-              </div>
-              <UBadge v-if="section.highlight" :color="section.highlight.color" variant="subtle" class="text-sm">
-                {{ section.highlight.text }}
-              </UBadge>
-            </div>
-          </template>
-
-          <div class="space-y-5">
-            <div
-              v-for="item in section.items"
-              :key="item.label"
-              class="flex justify-between items-center p-3"
-            >
-              <span class="text-gray-700 font-medium font-inter">{{ item.label }}</span>
-              <span class="text-lg font-bold text-primary">{{ item.price }}</span>
-            </div>
-          </div>
-
-          <template v-if="section.note" #footer>
-            <UAlert
-              :title="section.note"
-              :icon="section.noteIcon || 'i-heroicons-information-circle'"
-              color="blue"
-              variant="subtle"
-              class="border-0 flex items-center justify-center gap-4 text-center my-4 px-2"
-            />
-          </template>
-        </UCard>
-      </div>
-
-      <!-- Garanties -->
-      <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-                      <UIcon name="i-heroicons-heart" class="w-8 h-8 text-red-500 mr-3" />
-          <h4 class="font-semibold text-gray-900 mb-2">Réduction Famille</h4>
-          <p class="text-sm text-gray-600">Profitez de <strong class="text-primary">20% de réduction</strong> sur la cotisation annuelle pour tous les membres de la même famille !</p>
-        </div>
-        <div class="text-center">
-          <UIcon name="i-heroicons-clock" class="w-8 h-8 text-blue-500 mx-auto mb-3" />
-          <h4 class="font-semibold text-gray-900 mb-2">Horaires Flexibles</h4>
-          <p class="text-sm text-gray-600">Cours adaptés à votre emploi du temps</p>
-        </div>
-        <div class="text-center">
-          <UIcon name="i-heroicons-academic-cap" class="w-8 h-8 text-gray-800 mx-auto mb-3" />
-          <h4 class="font-semibold text-gray-900 mb-2">Instructeurs Qualifiés</h4>
-          <p class="text-sm text-gray-600">Équipe professionnelle et expérimentée</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-
 <script setup>
 const tarifs = [
   {
@@ -157,7 +67,8 @@ const tarifs = [
   {
     title: 'Cours propriétaires',
     items: [
-      { label: 'Adulte', price: '30 €' }
+      { label: 'Particulier (enfants et adultes)', price: '30 €' },
+      { label: 'Collectif (enfants et adultes)', price: '20 €' }
     ],
     note: 'Perfectionnement avec votre propre cheval',
     noteIcon: 'i-heroicons-academic-cap'
@@ -178,3 +89,88 @@ const getIconForSection = (title) => {
   return iconMap[title] || 'i-heroicons-currency-euro'
 }
 </script>
+
+
+<template>
+  <section id="tarifs" class="py-24 bg-gradient-to-br from-[#F4F1EE] to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-playfair font-bold text-gray-900 mb-4">
+          Tarifs 2025
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto font-inter">
+          Découvrez nos tarifs transparents et adaptés à tous les niveaux.
+        </p>
+      </div>
+
+      <!-- Tarifs Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
+        <div
+          v-for="section in tarifs"
+          :key="section.title"
+          class="bg-white rounded-xl shadow-lg ring-1 ring-gray-200 hover:shadow-xl hover:-translate-y-1 transition duration-300 overflow-hidden flex flex-col h-full"
+        >
+          <!-- Header -->
+          <div class="px-6 py-5 border-b border-gray-200">
+            <div class="flex items-center justify-between py-2">
+              <div class="flex items-center space-x-3 px-3">
+                <UIcon :name="getIconForSection(section.title)" class="w-6 h-6 text-primary" />
+                <h3 class="text-lg font-semibold text-gray-900">
+                  {{ section.title }}
+                </h3>
+              </div>
+              <UBadge v-if="section.highlight" :color="section.highlight.color" variant="subtle" class="text-sm">
+                {{ section.highlight.text }}
+              </UBadge>
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div class="px-6 py-6 flex-grow">
+            <div class="space-y-1">
+              <div
+                v-for="item in section.items"
+                :key="item.label"
+                class="flex justify-between items-center p-3"
+              >
+                <span class="text-gray-700 font-medium font-inter">{{ item.label }}</span>
+                <span class="text-lg font-bold text-primary">{{ item.price }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div v-if="section.note" class="px-6 py-5 border-t border-gray-200 mt-auto">
+            <UAlert
+              :title="section.note"
+              :icon="section.noteIcon || 'i-heroicons-information-circle'"
+              color="blue"
+              variant="subtle"
+              class="border-0 flex items-center justify-center gap-4 text-center my-4 px-2"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Garanties -->
+      <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+                      <UIcon name="i-heroicons-heart" class="w-8 h-8 text-red-500 mr-3" />
+          <h4 class="font-semibold text-gray-900 mb-2">Réduction Famille</h4>
+          <p class="text-sm text-gray-600">Profitez de <strong class="text-primary">20% de réduction</strong> sur la cotisation annuelle pour tous les membres de la même famille !</p>
+        </div>
+        <div class="text-center">
+          <UIcon name="i-heroicons-clock" class="w-8 h-8 text-blue-500 mx-auto mb-3" />
+          <h4 class="font-semibold text-gray-900 mb-2">Horaires Flexibles</h4>
+          <p class="text-sm text-gray-600">Cours adaptés à votre emploi du temps</p>
+        </div>
+        <div class="text-center">
+          <UIcon name="i-heroicons-academic-cap" class="w-8 h-8 text-gray-800 mx-auto mb-3" />
+          <h4 class="font-semibold text-gray-900 mb-2">Instructeurs Qualifiés</h4>
+          <p class="text-sm text-gray-600">Équipe professionnelle et expérimentée</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
