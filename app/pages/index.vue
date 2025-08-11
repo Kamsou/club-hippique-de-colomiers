@@ -59,7 +59,6 @@ onUnmounted(() => {
 
 <template>
   <div>
-    <!-- Header transparent et adaptatif -->
     <header 
       ref="header"
       class="fixed w-full px-6 top-0 z-50 transition-all duration-300"
@@ -424,7 +423,7 @@ onUnmounted(() => {
 
     </UContainer>
 
-    <footer class="text-center py-10 bg-primary text-white">
+    <footer class="text-center py-10 bg-primary text-blue-40">
       &copy; 2025 Club Hippique de Colomiers - Tous droits réservés.
     </footer>
   </div>

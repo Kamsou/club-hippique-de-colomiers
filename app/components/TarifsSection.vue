@@ -111,22 +111,20 @@ const getIconForSection = (title) => {
           :key="section.title"
           class="bg-white rounded-xl shadow-lg ring-1 ring-gray-200 hover:shadow-xl hover:-translate-y-1 transition duration-300 overflow-hidden flex flex-col h-full"
         >
-          <!-- Header -->
-          <div class="px-6 py-5 border-b border-gray-200">
-            <div class="flex items-center justify-between py-2">
-              <div class="flex items-center space-x-3 px-3">
+          <div class="px-4 py-5 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
                 <UIcon :name="getIconForSection(section.title)" class="w-6 h-6 text-primary" />
-                <h3 class="text-lg font-semibold text-gray-900">
+                <h3 class="text-lg font-semibold leading-tight text-gray-900">
                   {{ section.title }}
                 </h3>
               </div>
-              <UBadge v-if="section.highlight" :color="section.highlight.color" variant="subtle" class="text-sm">
+              <UBadge v-if="section.highlight" :color="section.highlight.color" variant="subtle" class="text-xs">
                 {{ section.highlight.text }}
               </UBadge>
             </div>
           </div>
 
-          <!-- Body -->
           <div class="px-6 py-6 flex-grow">
             <div class="space-y-1">
               <div
@@ -140,20 +138,18 @@ const getIconForSection = (title) => {
             </div>
           </div>
 
-          <!-- Footer -->
-          <div v-if="section.note" class="px-6 py-5 border-t border-gray-200 mt-auto">
+          <div v-if="section.note" class="px-4 border-t border-gray-200 mt-auto">
             <UAlert
               :title="section.note"
               :icon="section.noteIcon || 'i-heroicons-information-circle'"
               color="blue"
               variant="subtle"
-              class="border-0 flex items-center justify-center gap-4 text-center my-4 px-2"
+              class="border-0 flex items-center justify-center gap-4 text-center my-4"
             />
           </div>
         </div>
       </div>
 
-      <!-- Garanties -->
       <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="text-center">
                       <UIcon name="i-heroicons-heart" class="w-8 h-8 text-red-500 mr-3" />
