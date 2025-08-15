@@ -337,29 +337,18 @@ const envoyerMessage = async () => {
                 <div>
                   <div class="font-semibold text-gray-900 mb-2">Horaires</div>
                   <div class="space-y-1 text-gray-600">
-                    <div class="flex justify-between">
-                      <span>Lun - Sam</span>
-                      <span class="font-medium">9h - 19h</span>
+                    <div class="flex gap-2">
+                      <span>Lun - Sam :</span>
+                      <span class="font-medium">9h00 - 19h00</span>
                     </div>
-                    <div class="flex justify-between">
-                      <span>Dimanche</span>
+                    <div class="flex gap-2">
+                      <span>Dimanche :</span>
                       <span class="font-medium text-red-500">Fermé</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <UButton 
-              color="primary" 
-              size="md" 
-              class="w-full mt-12 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg p-3 gap-3"
-              icon="i-heroicons-map"
-              to="https://maps.app.goo.gl/zPTd9GrFf2hKEL9H9"
-              target="_blank"
-            >
-              Voir sur la carte
-            </UButton>
           </div>
 
           <div class="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-8 border border-primary/10">
