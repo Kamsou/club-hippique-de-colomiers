@@ -72,7 +72,7 @@ const envoyerMessage = async () => {
   isLoading.value = true
   
   try {
-    const { data } = await $fetch('/api/contact', {
+    const { data } = await $fetch('/.netlify/functions/contact', {
       method: 'POST',
       body: form.value
     })

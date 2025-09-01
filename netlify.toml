@@ -4,13 +4,3 @@
 
 [build.environment]
   NODE_VERSION = "20"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/server/:splat"
-  status = 200
-  force = true
-
-[functions]
-  directory = ".netlify/functions-internal"
-  included_files = ["server/**"]
