@@ -56,7 +56,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-// Réactivité pour le formulaire de contact
 const form = ref({
   prenom: '',
   nom: '',
@@ -69,7 +68,6 @@ const form = ref({
 const isLoading = ref(false)
 const toast = useToast()
 
-// Fonction pour envoyer le message
 const envoyerMessage = async () => {
   isLoading.value = true
   
@@ -86,7 +84,6 @@ const envoyerMessage = async () => {
       color: 'green'
     })
     
-    // Réinitialiser le formulaire
     form.value = {
       prenom: '',
       nom: '',
@@ -408,66 +405,68 @@ const envoyerMessage = async () => {
               <h3 class="text-xl font-bold text-gray-900">Écrivez-nous</h3>
             </div>
             
-            <form @submit.prevent="envoyerMessage" class="space-y-4">
-              <div class="grid grid-cols-2 gap-3">
+            <ClientOnly>
+              <form @submit.prevent="envoyerMessage" class="space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <input 
+                    v-model="form.prenom"
+                    type="text" 
+                    class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                    placeholder="Prénom"
+                    required
+                  />
+                  <input 
+                    v-model="form.nom"
+                    type="text" 
+                    class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                    placeholder="Nom"
+                    required
+                  />
+                </div>
+                
                 <input 
-                  v-model="form.prenom"
-                  type="text" 
+                  v-model="form.email"
+                  type="email" 
                   class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
-                  placeholder="Prénom"
+                  placeholder="votre@email.com"
                   required
                 />
+                
                 <input 
-                  v-model="form.nom"
-                  type="text" 
+                  v-model="form.telephone"
+                  type="tel" 
                   class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
-                  placeholder="Nom"
-                  required
+                  placeholder="Téléphone"
                 />
-              </div>
-              
-              <input 
-                v-model="form.email"
-                type="email" 
-                class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
-                placeholder="votre@email.com"
-                required
-              />
-              
-              <input 
-                v-model="form.telephone"
-                type="tel" 
-                class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
-                placeholder="Téléphone"
-              />
-              
-              <select v-model="form.sujet" class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm">
-                <option>Cours Poney Club</option>
-                <option>Cours particuliers</option>
-                <option>Pension pour mon cheval</option>
-                <option>Cours propriétaires</option>
-                <option>Autre demande</option>
-              </select>
-              
-              <textarea 
-                v-model="form.message"
-                rows="3" 
-                class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors resize-none text-sm"
-                placeholder="Votre message..."
-                required
-              ></textarea>
-              
-              <UButton 
-                type="submit"
-                :loading="isLoading"
-                color="primary" 
-                size="md" 
-                class="w-full bg-gradient-to-r cursor-pointer from-primary to-blue-600 hover:to-primary transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg border-0 flex justify-center py-2 px-4 items-center gap-3"
-                icon="i-heroicons-paper-airplane"
-              >
-                {{ isLoading ? 'Envoi en cours...' : 'Envoyer' }}
-              </UButton>
-            </form>
+                
+                <select v-model="form.sujet" class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm">
+                  <option>Cours Poney Club</option>
+                  <option>Cours particuliers</option>
+                  <option>Pension pour mon cheval</option>
+                  <option>Cours propriétaires</option>
+                  <option>Autre demande</option>
+                </select>
+                
+                <textarea 
+                  v-model="form.message"
+                  rows="3" 
+                  class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors resize-none text-sm"
+                  placeholder="Votre message..."
+                  required
+                ></textarea>
+                
+                <UButton 
+                  type="submit"
+                  :loading="isLoading"
+                  color="primary" 
+                  size="md" 
+                  class="w-full bg-gradient-to-r cursor-pointer from-primary to-blue-600 hover:to-primary transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg border-0 flex justify-center py-2 px-4 items-center gap-3"
+                  icon="i-heroicons-paper-airplane"
+                >
+                  {{ isLoading ? 'Envoi en cours...' : 'Envoyer' }}
+                </UButton>
+              </form>
+            </ClientOnly>
           </div>
         </div>
       </section>

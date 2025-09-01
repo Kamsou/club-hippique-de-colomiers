@@ -1,13 +1,11 @@
 import nodemailer from 'nodemailer'
 
 export default defineEventHandler(async (event) => {
-  // Vérifier que c'est bien une requête POST
   assertMethod(event, 'POST')
   
   const body = await readBody(event)
   const { nom, prenom, email, telephone, message, sujet } = body
   
-  // Validation des champs requis
   if (!nom || !prenom || !email || !message) {
     throw createError({
       statusCode: 400,
@@ -15,7 +13,6 @@ export default defineEventHandler(async (event) => {
     })
   }
   
-  // Validation email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!emailRegex.test(email)) {
     throw createError({
@@ -24,7 +21,6 @@ export default defineEventHandler(async (event) => {
     })
   }
   
-  // Sanitize input (échapper HTML)
   const sanitize = (str) => str.replace(/[<>&"']/g, (match) => {
     const entities = { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&#39;' }
     return entities[match]
@@ -39,7 +35,6 @@ export default defineEventHandler(async (event) => {
   })
 
   try {
-    // Envoi de l'email
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
       to: process.env.GMAIL_USER,
