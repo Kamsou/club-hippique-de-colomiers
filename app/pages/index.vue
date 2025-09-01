@@ -66,7 +66,7 @@ const form = ref({
 })
 
 const isLoading = ref(false)
-const toast = useToast()
+const messageSent = ref(false)
 
 const envoyerMessage = async () => {
   isLoading.value = true
@@ -78,11 +78,7 @@ const envoyerMessage = async () => {
     })
     
     // Succès
-    toast.add({
-      title: 'Message envoyé !',
-      description: 'Nous vous répondrons dans les plus brefs délais.',
-      color: 'green'
-    })
+    messageSent.value = true
     
     form.value = {
       prenom: '',
@@ -93,12 +89,13 @@ const envoyerMessage = async () => {
       message: ''
     }
     
+    // Masquer le message de succès après 5 secondes
+    setTimeout(() => {
+      messageSent.value = false
+    }, 5000)
+    
   } catch (error) {
-    toast.add({
-      title: 'Erreur',
-      description: 'Une erreur est survenue lors de l\'envoi. Réessayez plus tard.',
-      color: 'red'
-    })
+    console.error('Erreur lors de l\'envoi:', error)
   } finally {
     isLoading.value = false
   }
@@ -406,7 +403,15 @@ const envoyerMessage = async () => {
             </div>
             
             <ClientOnly>
-              <form @submit.prevent="envoyerMessage" class="space-y-4">
+              <div v-if="messageSent" class="text-center py-8">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <UIcon name="i-heroicons-check-circle" class="w-10 h-10 text-green-600" />
+                </div>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">Message envoyé avec succès !</h4>
+                <p class="text-gray-600 text-sm">Nous vous répondrons dans les plus brefs délais.</p>
+              </div>
+              
+              <form v-else @submit.prevent="envoyerMessage" class="space-y-4">
                 <div class="grid grid-cols-2 gap-3">
                   <input 
                     v-model="form.prenom"
