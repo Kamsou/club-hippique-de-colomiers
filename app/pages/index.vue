@@ -1,55 +1,118 @@
 <script setup>
 import { NuxtImg } from '#components'
 
+const SITE_URL = 'https://clubhippiquedecolomiers.fr/'
+const LOGO_URL = 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png'
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1751087534740-673422f93589?q=80&w=2070&auto=format&fit=crop'
+const HEADER_HEIGHT_PX = 80
+
+const navLinks = [
+  { id: 'services', label: 'Activités' },
+  { id: 'tarifs', label: 'Tarifs' },
+  { id: 'contact', label: 'Nous contacter' }
+]
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsActivityLocation',
+  '@id': SITE_URL + '#organization',
+  name: 'Club Hippique de Colomiers',
+  alternateName: 'CHC',
+  url: SITE_URL,
+  logo: LOGO_URL,
+  image: LOGO_URL,
+  description: 'Centre équestre à Colomiers (31), à 15 min de Toulouse. Cours d\'équitation, pension chevaux, stages et concours.',
+  sport: 'Equestrianism',
+  priceRange: '€€',
+  currenciesAccepted: 'EUR',
+  paymentAccepted: 'Cash, Credit Card, Check',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Chemin de Saint Jean',
+    addressLocality: 'Colomiers',
+    postalCode: '31770',
+    addressRegion: 'Occitanie',
+    addressCountry: 'FR'
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 43.6125, longitude: 1.3372 },
+  telephone: '+33684809703',
+  email: 'clubhippiquecolomiers@gmail.com',
+  areaServed: [
+    { '@type': 'City', name: 'Colomiers' },
+    { '@type': 'City', name: 'Toulouse' },
+    { '@type': 'AdministrativeArea', name: 'Haute-Garonne' }
+  ],
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '09:00',
+    closes: '19:00'
+  }],
+  makesOffer: [
+    { '@type': 'Offer', name: 'Cours Poney Club', description: 'Apprentissage de l\'équitation pour enfants les mercredis et samedis.' },
+    { '@type': 'Offer', name: 'Cours particuliers', description: 'Accompagnement personnalisé pour cavaliers de tous niveaux.' },
+    { '@type': 'Offer', name: 'Cours propriétaires', description: 'Perfectionnement avec votre propre monture.' },
+    { '@type': 'Offer', name: 'Pension chevaux', description: 'Hébergement en box, paddock et soins quotidiens.' }
+  ]
+}
+
 useSeoMeta({
-  title: 'Club Hippique de Colomiers - Accueil',
-  description: 'Bienvenue au Club Hippique de Colomiers. Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
-  ogTitle: 'Club Hippique de Colomiers - Accueil',
-  ogDescription: 'Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
+  title: 'Club Hippique de Colomiers | Cours d\'équitation & pension chevaux près de Toulouse',
+  description: 'Centre équestre à Colomiers (31770), à 15 min de Toulouse. Cours poney club, perfectionnement cavaliers, pension box, stages vacances et concours. Encadrement diplômé FFE.',
+  keywords: 'club hippique Colomiers, équitation Toulouse, centre équestre Haute-Garonne, cours poney club, pension chevaux 31, stage équitation enfants, cours propriétaires, concours équestre Colomiers',
+  author: 'Club Hippique de Colomiers',
+  robots: 'index, follow, max-image-preview:large',
+  ogTitle: 'Club Hippique de Colomiers — Cours d\'équitation près de Toulouse',
+  ogDescription: 'Centre équestre familial à Colomiers (31). Cours du poney club au perfectionnement, pension chevaux, stages, concours. À 15 min de Toulouse.',
   ogType: 'website',
-  ogUrl: 'https://clubhippiquedecolomiers.fr/',
-  ogImage: 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png',
+  ogUrl: SITE_URL,
+  ogSiteName: 'Club Hippique de Colomiers',
+  ogImage: LOGO_URL,
   ogImageAlt: 'Logo Club Hippique de Colomiers',
+  ogImageWidth: 500,
+  ogImageHeight: 500,
   ogLocale: 'fr_FR',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Club Hippique de Colomiers - Accueil',
-  twitterDescription: 'Le cadre idéal pour progresser à cheval, du loisir à la compétition.',
-  twitterImage: 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png'
+  twitterTitle: 'Club Hippique de Colomiers — Cours d\'équitation près de Toulouse',
+  twitterDescription: 'Centre équestre à Colomiers (31). Cours, pension, stages, concours.',
+  twitterImage: LOGO_URL,
+  twitterImageAlt: 'Logo Club Hippique de Colomiers'
 })
 
 useHead({
   link: [
-    { rel: 'canonical', href: 'https://clubhippiquedecolomiers.fr/' }
+    { rel: 'canonical', href: SITE_URL },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+    { rel: 'preconnect', href: 'https://images.unsplash.com' },
+    { rel: 'preload', as: 'image', href: HERO_IMAGE, fetchpriority: 'high' },
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..400;1,9..144,400&display=swap' }
+  ],
+  script: [
+    { type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd) }
   ]
 })
 
-const header = ref(null)
 const headerScrolled = ref(false)
 
 const handleScroll = () => {
-  const heroHeight = Math.max(window.innerHeight * 0.8, 600)
-  const scrollY = window.scrollY
-  
-  headerScrolled.value = scrollY > heroHeight - 100
+  const threshold = Math.max(window.innerHeight * 0.8, 600) - 100
+  const next = window.scrollY > threshold
+  if (next !== headerScrolled.value) headerScrolled.value = next
 }
 
 const scrollToSection = (sectionId, event) => {
   event.preventDefault()
-  
   const element = document.getElementById(sectionId)
-  if (element) {
-    const headerHeight = 80 
-    const elementPosition = element.offsetTop - headerHeight
-    
-    window.scrollTo({
-      top: elementPosition,
-      behavior: 'smooth'
-    })
-  }
+  if (!element) return
+  window.scrollTo({
+    top: element.offsetTop - HEADER_HEIGHT_PX,
+    behavior: 'smooth'
+  })
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
 onUnmounted(() => {
@@ -70,16 +133,15 @@ const messageSent = ref(false)
 
 const envoyerMessage = async () => {
   isLoading.value = true
-  
+
   try {
-    const { data } = await $fetch('/.netlify/functions/contact', {
+    await $fetch('/.netlify/functions/contact', {
       method: 'POST',
       body: form.value
     })
-    
-    // Succès
+
     messageSent.value = true
-    
+
     form.value = {
       prenom: '',
       nom: '',
@@ -88,12 +150,10 @@ const envoyerMessage = async () => {
       sujet: 'Cours Poney Club',
       message: ''
     }
-    
-    // Masquer le message de succès après 5 secondes
+
     setTimeout(() => {
       messageSent.value = false
     }, 5000)
-    
   } catch (error) {
     console.error('Erreur lors de l\'envoi:', error)
   } finally {
@@ -109,83 +169,101 @@ const envoyerMessage = async () => {
       class="fixed w-full px-6 top-0 z-50 transition-all duration-300"
       :class="headerScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-2' : 'bg-transparent py-4'"
     >
-      <div class="max-w-7xl mx-auto flex items-center justify-center sm:justify-between">
-        <NuxtImg 
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <NuxtImg
           provider="cloudinary"
-          src="v1754221336/chc/chc-final-removebg-preview_bqtqnj.png" 
-          alt="Logo Club Hippique de Colomiers" 
-          class="h-16 w-auto transition-all duration-300"
-          :class="headerScrolled ? 'filter-none' : 'filter brightness-0 invert'" 
+          src="v1754221336/chc/chc-final-removebg-preview_bqtqnj.png"
+          alt="Logo Club Hippique de Colomiers"
+          class="h-12 md:h-16 w-auto transition-all duration-300 shrink-0"
+          :class="headerScrolled ? 'filter-none' : 'filter brightness-0 invert'"
         />
-        <nav class="hidden md:flex items-center gap-8">
-          <a 
-            href="#services"
-            @click="scrollToSection('services', $event)"
-            class="transition-all duration-300 font-medium text-sm tracking-wide cursor-pointer"
-            :class="headerScrolled ? 'text-gray-900 hover:text-primary' : 'text-white hover:text-blue-200 drop-shadow-lg'"
+        <div class="flex items-center gap-6 md:gap-8">
+          <nav class="hidden md:flex items-center gap-8">
+            <a
+              v-for="link in navLinks"
+              :key="link.id"
+              :href="`#${link.id}`"
+              @click="scrollToSection(link.id, $event)"
+              class="transition-all duration-300 font-medium text-sm tracking-wide cursor-pointer"
+              :class="headerScrolled ? 'text-gray-900 hover:text-primary' : 'text-white hover:text-blue-200 drop-shadow-lg'"
+            >
+              {{ link.label }}
+            </a>
+          </nav>
+          <a
+            href="https://cloud25.kavalog.fr/COLOMIERS/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-1.5 md:gap-2 transition-all duration-300 cursor-pointer font-medium text-xs md:text-sm tracking-wide rounded-full px-3 py-1.5 md:px-4 md:py-2"
+            :class="headerScrolled
+              ? 'bg-primary text-white hover:bg-blue-700'
+              : 'bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-gray-900 hover:border-white'"
           >
-            Activités
+            Mon espace
+            <UIcon name="i-heroicons-arrow-up-right" class="w-3 h-3 md:w-3.5 md:h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
-          <a 
-            href="#tarifs"
-            @click="scrollToSection('tarifs', $event)"
-            class="transition-all duration-300 font-medium text-sm tracking-wide cursor-pointer"
-            :class="headerScrolled ? 'text-gray-900 hover:text-primary' : 'text-white hover:text-blue-200 drop-shadow-lg'"
-          >
-            Tarifs
-          </a>
-          <a 
-            href="#contact"
-            @click="scrollToSection('contact', $event)"
-            class="transition-all duration-300 cursor-pointer font-medium text-sm tracking-wide"
-            :class="headerScrolled ? 'text-gray-900 hover:text-primary' : 'text-white hover:text-blue-200 drop-shadow-lg'"
-          >
-            Nous contacter
-          </a>
-        </nav>
-        
-        <!-- Menu mobile -->
-        <UButton 
-          icon="i-heroicons-bars-3" 
-          variant="ghost" 
-          :color="headerScrolled ? 'gray' : 'white'"
-          class="md:hidden transition-all duration-300 hidden"
-          :class="headerScrolled ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/20 backdrop-blur-sm'"
-        />
+        </div>
       </div>
     </header>
 
-    <!-- Hero section plus proportionnée -->
-    <div class="relative h-screen flex items-center justify-center text-white text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1751087534740-673422f93589?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-      <div class="absolute inset-0 bg-gradient-to-br from-black/40 to-black/20 z-0"></div>
-      <div class="relative z-10 max-w-4xl px-6 py-8">
-        <h1 class="text-5xl leading-14 md:text-4xl lg:text-5xl font-bold mb-2 sm:leading-tight">
-          Club Hippique de Colomiers
-        </h1>
-        <p class="text-sm md:text-xl mb-6 text-white/90 leading-relaxed max-w-sm sm:max-w-2xl mx-auto">
-          Le cadre idéal pour progresser à cheval, du loisir à la compétition.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <UButton 
-            color="primary" 
-            size="lg" 
-            @click="scrollToSection('contact', $event)"
-            class="shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105 bg-gradient-to-r from-primary to-blue-600 border-0"
-          >
-            Nous contacter
-          </UButton>
-          <UButton 
-            color="white" 
-            variant="outline" 
-            size="lg" 
-            @click="scrollToSection('services', $event)"
-            class="text-white cursor-pointer border-2 border-white hover:bg-white hover:text-gray-900 transition-all duration-300 hover:scale-105 backdrop-blur-sm bg-white/10"
-          >
-            Découvrir nos activités
-          </UButton>
+    <section class="relative h-screen overflow-hidden bg-gray-900">
+      <div
+        class="absolute inset-0 bg-cover bg-center scale-105 animate-hero-zoom"
+        :style="{ backgroundImage: `url('${HERO_IMAGE}')` }"
+      ></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/85"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent"></div>
+
+      <div class="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-20">
+        <div class="max-w-7xl mx-auto w-full px-6 md:px-12">
+          <div class="flex items-center gap-3 mb-5 md:mb-7 opacity-0 animate-fade-up [animation-delay:200ms]">
+            <span class="text-white/85 uppercase tracking-[0.25em] text-[11px] md:text-xs font-medium">
+              Centre équestre · Haute-Garonne
+            </span>
+          </div>
+
+          <h1 class="text-white opacity-0 animate-fade-up [animation-delay:400ms]">
+            <span class="block font-light text-2xl md:text-4xl lg:text-5xl tracking-tight leading-none mb-1 md:mb-2">
+              Club Hippique
+            </span>
+            <span class="block font-display italic text-6xl md:text-8xl lg:text-[9rem] leading-[0.95] tracking-tight font-normal">
+              de Colomiers
+            </span>
+          </h1>
+
+          <p class="mt-6 md:mt-8 text-white/85 text-base md:text-xl max-w-xl leading-relaxed opacity-0 animate-fade-up [animation-delay:600ms]">
+            Un cadre exigeant pour progresser à cheval, du premier galop aux concours.
+          </p>
+
+          <div class="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7 opacity-0 animate-fade-up [animation-delay:800ms]">
+            <button
+              type="button"
+              @click="scrollToSection('services', $event)"
+              class="group inline-flex items-center justify-center gap-3 bg-white text-gray-900 px-7 py-3.5 rounded-full font-medium text-sm tracking-wide hover:bg-white/90 transition-all duration-300 cursor-pointer w-fit"
+            >
+              Découvrir nos activités
+              <UIcon name="i-heroicons-arrow-down" class="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+            </button>
+            <a
+              href="#contact"
+              @click="scrollToSection('contact', $event)"
+              class="text-white/90 hover:text-white text-sm font-medium tracking-wide border-b border-white/40 hover:border-white pb-1 transition-colors duration-300 w-fit"
+            >
+              Nous contacter
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="absolute bottom-8 right-8 hidden md:flex flex-col items-center gap-3 opacity-0 animate-fade-up [animation-delay:1100ms]">
+        <span class="text-white/60 text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl]">
+          Scroll
+        </span>
+        <div class="w-px h-14 bg-white/20 relative overflow-hidden">
+          <div class="absolute inset-x-0 top-0 h-1/3 bg-white animate-scroll-line"></div>
+        </div>
+      </div>
+    </section>
 
     <UContainer class="py-16"  id="services">
       
@@ -478,7 +556,7 @@ const envoyerMessage = async () => {
 
     </UContainer>
 
-    <footer class="text-center py-10 bg-primary text-blue-40">
+    <footer class="text-center py-10 bg-primary text-white/90">
       &copy; 2025 Club Hippique de Colomiers - Tous droits réservés.
     </footer>
   </div>
@@ -503,5 +581,59 @@ const envoyerMessage = async () => {
 
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* Hero animations */
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hero-zoom {
+  0% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-hero-zoom {
+  animation: hero-zoom 8s ease-out forwards;
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(400%);
+  }
+}
+
+.animate-scroll-line {
+  animation: scroll-line 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-up,
+  .animate-hero-zoom,
+  .animate-scroll-line {
+    animation: none;
+  }
+  .animate-fade-up {
+    opacity: 1;
+  }
 }
 </style>
