@@ -151,7 +151,7 @@ const getIconForSection = (title) => {
           <span class="text-primary tracking-[0.12em] text-xs font-medium">Nos tarifs</span>
         </div>
         <h2 class="font-display text-4xl md:text-5xl text-gray-900 tracking-tight">
-          Tarifs <span class="italic">2025</span>
+          Tarifs <span class="italic">2026-2027</span>
         </h2>
         <p class="mt-5 text-lg text-gray-500">
           Des tarifs transparents et adaptés à tous les niveaux.
