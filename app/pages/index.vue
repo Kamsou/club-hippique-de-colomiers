@@ -5,6 +5,7 @@ const SITE_URL = 'https://clubhippiquedecolomiers.fr/'
 const LOGO_URL = 'https://res.cloudinary.com/augalo/image/upload/v1754221336/chc/chc-final-removebg-preview_bqtqnj.png'
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1751087534740-673422f93589?q=80&w=2070&auto=format&fit=crop'
 const HEADER_HEIGHT_PX = 80
+const currentYear = new Date().getFullYear()
 
 const navLinks = [
   { id: 'services', label: 'Activités' },
@@ -62,7 +63,7 @@ useSeoMeta({
   keywords: 'club hippique Colomiers, équitation Toulouse, centre équestre Haute-Garonne, cours poney club, pension chevaux 31, stage équitation enfants, cours propriétaires, concours équestre Colomiers',
   author: 'Club Hippique de Colomiers',
   robots: 'index, follow, max-image-preview:large',
-  ogTitle: 'Club Hippique de Colomiers — Cours d\'équitation près de Toulouse',
+  ogTitle: 'Club Hippique de Colomiers · Cours d\'équitation près de Toulouse',
   ogDescription: 'Centre équestre familial à Colomiers (31). Cours du poney club au perfectionnement, pension chevaux, stages, concours. À 15 min de Toulouse.',
   ogType: 'website',
   ogUrl: SITE_URL,
@@ -73,7 +74,7 @@ useSeoMeta({
   ogImageHeight: 500,
   ogLocale: 'fr_FR',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Club Hippique de Colomiers — Cours d\'équitation près de Toulouse',
+  twitterTitle: 'Club Hippique de Colomiers · Cours d\'équitation près de Toulouse',
   twitterDescription: 'Centre équestre à Colomiers (31). Cours, pension, stages, concours.',
   twitterImage: LOGO_URL,
   twitterImageAlt: 'Logo Club Hippique de Colomiers'
@@ -216,17 +217,17 @@ const envoyerMessage = async () => {
 
       <div class="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-20">
         <div class="max-w-7xl mx-auto w-full px-6 md:px-12">
-          <div class="flex items-center gap-3 mb-5 md:mb-7 opacity-0 animate-fade-up [animation-delay:200ms]">
-            <span class="text-white/85 uppercase tracking-[0.25em] text-[11px] md:text-xs font-medium">
+          <div class="mb-5 md:mb-7 opacity-0 animate-fade-up [animation-delay:200ms]">
+            <span class="text-white/90 tracking-[0.12em] text-xs md:text-sm font-medium">
               Centre équestre · Haute-Garonne
             </span>
           </div>
 
           <h1 class="text-white opacity-0 animate-fade-up [animation-delay:400ms]">
-            <span class="block font-light text-2xl md:text-4xl lg:text-5xl tracking-tight leading-none mb-1 md:mb-2">
+            <span class="block font-light text-2xl md:text-3xl lg:text-4xl tracking-tight leading-none mb-1 md:mb-2">
               Club Hippique
             </span>
-            <span class="block font-display italic text-6xl md:text-8xl lg:text-[9rem] leading-[0.95] tracking-tight font-normal">
+            <span class="block font-display italic text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight font-normal">
               de Colomiers
             </span>
           </h1>
@@ -256,8 +257,8 @@ const envoyerMessage = async () => {
       </div>
 
       <div class="absolute bottom-8 right-8 hidden md:flex flex-col items-center gap-3 opacity-0 animate-fade-up [animation-delay:1100ms]">
-        <span class="text-white/60 text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl]">
-          Scroll
+        <span class="text-white/60 text-[11px] tracking-[0.2em] [writing-mode:vertical-rl]">
+          Défiler
         </span>
         <div class="w-px h-14 bg-white/20 relative overflow-hidden">
           <div class="absolute inset-x-0 top-0 h-1/3 bg-white animate-scroll-line"></div>
@@ -267,101 +268,79 @@ const envoyerMessage = async () => {
 
     <UContainer class="py-16"  id="services">
       
-      <!-- Section Nos activités - Design premium -->
+      <!-- Section Nos activités -->
       <section class="relative">
         <!-- Header Section -->
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            Une expérience équestre
-            <span class="text-primary relative">
-              sur-mesure
-              <svg class="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 200 12" fill="none">
-                <path d="M2 10C20 3 40 1 60 2C80 3 100 4 120 2C140 0 160 1 180 3C185 4 190 5 198 6" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
-              </svg>
-            </span>
+        <div class="max-w-2xl mb-14 md:mb-16">
+          <div class="mb-5">
+            <span class="text-primary tracking-[0.12em] text-xs font-medium">Nos activités</span>
+          </div>
+          <h2 class="font-display text-4xl md:text-5xl text-gray-900 leading-[1.05] tracking-tight">
+            Une expérience équestre <span class="italic">sur-mesure</span>
           </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Découvrez nos activités adaptés à chaque cavalier.
+          <p class="mt-5 text-lg text-gray-500 leading-relaxed">
+            Des formules pensées pour chaque cavalier, du premier galop à la compétition.
           </p>
         </div>
 
         <!-- Activities Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-          
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
+
           <!-- Cours Poney Club -->
-          <div class="group relative bg-gradient-to-br from-slate-50 to-blue-50 rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100/50">
-            <div class="absolute inset-0 bg-gradient-to-br from-slate-600/5 to-blue-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <UIcon name="i-heroicons-academic-cap" class="w-8 h-8 text-white" />
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">Cours Poney Club</h3>
-              <p class="text-gray-600 mb-6 leading-relaxed">
-                Apprentissage ludique et sécurisé les mercredis et samedis pour nos jeunes cavaliers.
-              </p>
+          <div class="group relative bg-white rounded-2xl p-7 md:p-8 border border-gray-200/80 hover:border-primary/30 hover:shadow-xl hover:shadow-gray-200/60 transition-all duration-500">
+            <div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <UIcon name="i-heroicons-academic-cap" class="w-6 h-6" />
             </div>
+            <h3 class="font-display text-xl text-gray-900 mb-3">Cours Poney Club</h3>
+            <p class="text-[15px] text-gray-500 leading-relaxed">
+              Apprentissage ludique et sécurisé les mercredis et samedis pour nos jeunes cavaliers.
+            </p>
           </div>
 
           <!-- Pensions -->
-          <div class="group relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-blue-100/50">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <UIcon name="i-heroicons-home" class="w-8 h-8 text-white" />
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">Pensions</h3>
-              <p class="text-gray-600 mb-6 leading-relaxed">
-                Hébergement premium pour votre cheval. Box spacieux, paddocks et soins quotidiens dans un cadre naturel.
-              </p>
+          <div class="group relative bg-white rounded-2xl p-7 md:p-8 border border-gray-200/80 hover:border-primary/30 hover:shadow-xl hover:shadow-gray-200/60 transition-all duration-500">
+            <div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <UIcon name="i-heroicons-home" class="w-6 h-6" />
             </div>
+            <h3 class="font-display text-xl text-gray-900 mb-3">Pensions</h3>
+            <p class="text-[15px] text-gray-500 leading-relaxed">
+              Hébergement de qualité pour votre cheval. Box spacieux, paddocks et soins quotidiens dans un cadre naturel.
+            </p>
           </div>
 
-          <div class="group relative bg-gradient-to-br from-slate-50 to-gray-50 rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100/50">
-            <div class="absolute inset-0 bg-gradient-to-br from-slate-500/5 to-gray-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 bg-gradient-to-br from-slate-700 to-gray-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <UIcon name="i-heroicons-users" class="w-8 h-8 text-white" />
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">Cours Propriétaires</h3>
-              <p class="text-gray-600 mb-6 leading-relaxed">
-                Perfectionnement avec votre monture. Encadrement expert pour le travail sur le plat et à l'obstacle.
-              </p>
+          <!-- Cours Propriétaires -->
+          <div class="group relative bg-white rounded-2xl p-7 md:p-8 border border-gray-200/80 hover:border-primary/30 hover:shadow-xl hover:shadow-gray-200/60 transition-all duration-500">
+            <div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <UIcon name="i-heroicons-users" class="w-6 h-6" />
             </div>
+            <h3 class="font-display text-xl text-gray-900 mb-3">Cours Propriétaires</h3>
+            <p class="text-[15px] text-gray-500 leading-relaxed">
+              Perfectionnement avec votre monture. Encadrement expert pour le travail sur le plat et à l'obstacle.
+            </p>
           </div>
 
           <!-- Cours Particuliers -->
-          <div class="group relative bg-gradient-to-br from-cyan-50 to-blue-50 rounded-3xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-cyan-100/50">
-            <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <UIcon name="i-heroicons-user" class="w-8 h-8 text-white" />
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">Cours Particuliers</h3>
-              <p class="text-gray-600 mb-6 leading-relaxed">
-                Accompagnement personnalisé pour une progression accélérée selon vos objectifs équestres.
-              </p>
+          <div class="group relative bg-white rounded-2xl p-7 md:p-8 border border-gray-200/80 hover:border-primary/30 hover:shadow-xl hover:shadow-gray-200/60 transition-all duration-500">
+            <div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <UIcon name="i-heroicons-user" class="w-6 h-6" />
             </div>
+            <h3 class="font-display text-xl text-gray-900 mb-3">Cours Particuliers</h3>
+            <p class="text-[15px] text-gray-500 leading-relaxed">
+              Accompagnement personnalisé pour une progression accélérée selon vos objectifs équestres.
+            </p>
           </div>
         </div>
 
         <!-- Stats Section -->
-        <div class="mt-20 bg-gradient-to-r from-gray-50 to-gray-100 p-12 border border-gray-200/50">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="text-center">
-              <div class="text-3xl md:text-4xl font-bold text-primary mb-2">15+</div>
-              <div class="text-gray-600 font-medium">Années d'expérience</div>
+        <div class="mt-20 border-y border-gray-200 py-12">
+          <div class="grid grid-cols-2 gap-8 max-w-lg mx-auto divide-x divide-gray-200">
+            <div class="text-center px-2">
+              <div class="font-display text-4xl md:text-5xl text-primary mb-2">15+</div>
+              <div class="text-sm text-gray-500 tracking-wide">Années d'expérience</div>
             </div>
-            <div class="text-center">
-              <div class="text-3xl md:text-4xl font-bold text-primary mb-2">200+</div>
-              <div class="text-gray-600 font-medium">Cavaliers formés</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl md:text-4xl font-bold text-primary mb-2">~50</div>
-              <div class="text-gray-600 font-medium">Chevaux résidents</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl md:text-4xl font-bold text-primary mb-2">98%</div>
-              <div class="text-gray-600 font-medium">Satisfaction client</div>
+            <div class="text-center px-2">
+              <div class="font-display text-4xl md:text-5xl text-primary mb-2">200+</div>
+              <div class="text-sm text-gray-500 tracking-wide">Cavaliers formés</div>
             </div>
           </div>
         </div>
@@ -370,29 +349,26 @@ const envoyerMessage = async () => {
       <TarifsSection id="tarifs" />
 
       <section class="relative py-16" id="contact">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            Prêt à commencer votre
-            <span class="text-primary relative">
-              aventure équestre ?
-              <svg class="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 200 12" fill="none">
-                <path d="M2 10C20 3 40 1 60 2C80 3 100 4 120 2C140 0 160 1 180 3C185 4 190 5 198 6" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
-              </svg>
-            </span>
+        <div class="text-center mb-14 max-w-2xl mx-auto">
+          <div class="mb-5">
+            <span class="text-primary tracking-[0.12em] text-xs font-medium">Nous contacter</span>
+          </div>
+          <h2 class="font-display text-4xl md:text-5xl text-gray-900 leading-[1.05] tracking-tight">
+            Prêt à commencer votre <span class="italic">aventure équestre</span> ?
           </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p class="mt-5 text-lg text-gray-500">
             Notre équipe est là pour répondre à toutes vos questions.
           </p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Localisation & Horaires -->
-          <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+          <div class="bg-white rounded-2xl p-8 border border-gray-200/80">
             <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center mr-4">
-                <UIcon name="i-heroicons-map-pin" class="w-6 h-6 text-white" />
+              <div class="w-11 h-11 rounded-xl bg-primary/5 text-primary flex items-center justify-center mr-4">
+                <UIcon name="i-heroicons-map-pin" class="w-5 h-5" />
               </div>
-              <h3 class="text-xl font-bold text-gray-900">Nous trouver</h3>
+              <h3 class="font-display text-xl text-gray-900">Nous trouver</h3>
             </div>
             
             <div class="space-y-6 mb-4">
@@ -423,12 +399,12 @@ const envoyerMessage = async () => {
             </div>
           </div>
 
-          <div class="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-8 border border-primary/10">
+          <div class="bg-primary/[0.04] rounded-2xl p-8 border border-primary/10">
             <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-700 rounded-xl flex items-center justify-center mr-4">
-                <UIcon name="i-heroicons-phone" class="w-6 h-6 text-white" />
+              <div class="w-11 h-11 rounded-xl bg-primary text-white flex items-center justify-center mr-4">
+                <UIcon name="i-heroicons-phone" class="w-5 h-5" />
               </div>
-              <h3 class="text-xl font-bold text-gray-900">Contact direct</h3>
+              <h3 class="font-display text-xl text-gray-900">Contact direct</h3>
             </div>
             
             <div class="space-y-6">
@@ -472,12 +448,12 @@ const envoyerMessage = async () => {
           </div>
 
           <!-- Formulaire de contact -->
-          <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+          <div class="bg-white rounded-2xl p-8 border border-gray-200/80">
             <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center mr-4">
-                <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-white" />
+              <div class="w-11 h-11 rounded-xl bg-primary/5 text-primary flex items-center justify-center mr-4">
+                <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
               </div>
-              <h3 class="text-xl font-bold text-gray-900">Écrivez-nous</h3>
+              <h3 class="font-display text-xl text-gray-900">Écrivez-nous</h3>
             </div>
             
             <ClientOnly>
@@ -543,11 +519,17 @@ const envoyerMessage = async () => {
                   :loading="isLoading"
                   color="primary" 
                   size="md" 
-                  class="w-full bg-gradient-to-r cursor-pointer from-primary to-blue-600 hover:to-primary transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg border-0 flex justify-center py-2 px-4 items-center gap-3"
+                  class="w-full bg-primary cursor-pointer hover:bg-blue-700 transition-colors duration-300 border-0 flex justify-center py-2.5 px-4 items-center gap-3"
                   icon="i-heroicons-paper-airplane"
                 >
                   {{ isLoading ? 'Envoi en cours...' : 'Envoyer' }}
                 </UButton>
+
+                <p class="text-xs text-gray-400 leading-relaxed text-center">
+                  Vos données servent uniquement à traiter votre demande.
+                  En savoir plus dans nos
+                  <NuxtLink to="/mentions-legales" class="text-gray-500 hover:text-primary underline underline-offset-2">mentions légales</NuxtLink>.
+                </p>
               </form>
             </ClientOnly>
           </div>
@@ -557,17 +539,16 @@ const envoyerMessage = async () => {
     </UContainer>
 
     <footer class="text-center py-10 bg-primary text-white/90">
-      &copy; 2025 Club Hippique de Colomiers - Tous droits réservés.
+      <p>&copy; {{ currentYear }} Club Hippique de Colomiers - Tous droits réservés.</p>
+      <NuxtLink to="/mentions-legales" class="inline-block mt-2 text-sm text-white/70 hover:text-white underline underline-offset-4 transition-colors">
+        Mentions légales
+      </NuxtLink>
     </footer>
   </div>
 </template>
 
 
 <style scoped>
-.text-primary {
-  color: #0073a8;
-}
-
 @keyframes fade-in-up {
   from {
     opacity: 0;

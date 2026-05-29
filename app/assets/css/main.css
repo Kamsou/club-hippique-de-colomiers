@@ -1,5 +1,19 @@
 @import "tailwindcss";
+@import "@nuxt/ui";
 
-@theme {
+@theme static {
   --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  /* Couleur de marque - Club Hippique de Colomiers (#0073a8) */
+  --color-brand-50: #f0f9fd;
+  --color-brand-100: #d9eff8;
+  --color-brand-200: #b0dcf0;
+  --color-brand-300: #75c2e6;
+  --color-brand-400: #1f9fd6;
+  --color-brand-500: #0073a8;
+  --color-brand-600: #00658f;
+  --color-brand-700: #015475;
+  --color-brand-800: #08465f;
+  --color-brand-900: #0d3a4f;
+  --color-brand-950: #07242f;
 }

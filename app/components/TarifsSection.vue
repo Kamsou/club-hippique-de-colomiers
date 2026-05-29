@@ -33,9 +33,9 @@ const tarifSections = {
       {
         title: 'Cours Poney Club',
         items: [
-          { label: 'Trimestre', price: '200 €' },
-          { label: 'Année', price: '600 €' },
-          { label: 'Pack 10 séances', price: '300 €' }
+          { label: 'Trimestre (1 cours/sem.)', price: '220 €' },
+          { label: 'Année (1 cours/sem.)', price: '660 €' },
+          { label: 'Année (2 cours/sem.)', price: '1250 €' }
         ],
         highlight: { text: 'Enfants', color: 'blue' }
       },
@@ -52,7 +52,8 @@ const tarifSections = {
       {
         title: 'Cours particuliers',
         items: [
-          { label: 'Enfant / Adulte', price: '40 € / séance' }
+          { label: 'À la séance', price: '40 €' },
+          { label: 'Carte 10 cours', price: '350 €' }
         ],
         note: 'Progression personnalisée et accélérée',
         noteIcon: 'i-heroicons-star'
@@ -145,12 +146,15 @@ const getIconForSection = (title) => {
   <section id="tarifs" class="py-24 bg-gradient-to-br from-[#F4F1EE] to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
       <!-- Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-playfair font-bold text-gray-900 mb-4">
-          Tarifs 2025
+      <div class="text-center mb-16 max-w-2xl mx-auto">
+        <div class="mb-5">
+          <span class="text-primary tracking-[0.12em] text-xs font-medium">Nos tarifs</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-gray-900 tracking-tight">
+          Tarifs <span class="italic">2025</span>
         </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto font-inter">
-          Découvrez nos tarifs transparents et adaptés à tous les niveaux.
+        <p class="mt-5 text-lg text-gray-500">
+          Des tarifs transparents et adaptés à tous les niveaux.
         </p>
       </div>
 
@@ -163,10 +167,10 @@ const getIconForSection = (title) => {
         >
           <!-- Section Header -->
           <div class="text-center mb-8">
-            <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-2">
+            <h3 class="font-display text-2xl md:text-3xl text-gray-900 mb-2">
               {{ section.title }}
             </h3>
-            <p class="text-gray-600 font-inter">
+            <p class="text-gray-500">
               {{ section.subtitle }}
             </p>
           </div>
@@ -176,13 +180,15 @@ const getIconForSection = (title) => {
             <div
               v-for="tarif in section.tarifs"
               :key="tarif.title"
-              class="bg-white rounded-xl shadow-lg ring-1 ring-gray-200 hover:shadow-xl hover:-translate-y-1 transition duration-300 overflow-hidden flex flex-col h-full"
+              class="bg-white rounded-2xl border border-gray-200/80 hover:border-primary/30 hover:shadow-xl hover:shadow-gray-200/60 transition duration-300 overflow-hidden flex flex-col h-full"
             >
-              <div class="px-4 py-5 border-b border-gray-200">
+              <div class="px-5 py-5 border-b border-gray-100">
                 <div class="flex items-center justify-between">
-                  <div class="flex items-center space-x-3">
-                    <UIcon :name="getIconForSection(tarif.title)" class="w-6 h-6 text-primary" />
-                    <h4 class="text-lg font-semibold leading-tight text-gray-900">
+                  <div class="flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-lg bg-primary/5 text-primary flex items-center justify-center shrink-0">
+                      <UIcon :name="getIconForSection(tarif.title)" class="w-5 h-5" />
+                    </span>
+                    <h4 class="font-display text-lg leading-tight text-gray-900">
                       {{ tarif.title }}
                     </h4>
                   </div>
@@ -197,10 +203,10 @@ const getIconForSection = (title) => {
                   <div
                     v-for="item in tarif.items"
                     :key="item.label"
-                    class="flex justify-between items-center p-3"
+                    class="flex justify-between items-center py-2.5 px-3 border-b border-gray-50 last:border-0"
                   >
-                    <span class="text-gray-700 font-medium font-inter">{{ item.label }}</span>
-                    <span class="text-lg font-bold text-primary">{{ item.price }}</span>
+                    <span class="text-gray-600">{{ item.label }}</span>
+                    <span class="font-display text-lg text-primary whitespace-nowrap pl-3">{{ item.price }}</span>
                   </div>
                 </div>
               </div>
@@ -219,21 +225,27 @@ const getIconForSection = (title) => {
         </div>
       </div>
 
-      <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="mt-20 pt-16 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div class="text-center">
-                      <UIcon name="i-heroicons-heart" class="w-8 h-8 text-red-500 mr-3" />
-          <h4 class="font-semibold text-gray-900 mb-2">Réduction Famille</h4>
-          <p class="text-sm text-gray-600">Profitez de <strong class="text-primary">20% de réduction</strong> sur la cotisation annuelle pour tous les membres de la même famille !</p>
+          <span class="w-12 h-12 rounded-full bg-primary/5 text-primary flex items-center justify-center mx-auto mb-4">
+            <UIcon name="i-heroicons-gift" class="w-6 h-6" />
+          </span>
+          <h4 class="font-display text-lg text-gray-900 mb-2">Réduction famille</h4>
+          <p class="text-sm text-gray-500 leading-relaxed">Profitez de <strong class="text-primary font-medium">20% de réduction</strong> sur la cotisation annuelle pour tous les membres d'une même famille.</p>
         </div>
         <div class="text-center">
-          <UIcon name="i-heroicons-clock" class="w-8 h-8 text-blue-500 mx-auto mb-3" />
-          <h4 class="font-semibold text-gray-900 mb-2">Horaires Flexibles</h4>
-          <p class="text-sm text-gray-600">Cours adaptés à votre emploi du temps</p>
+          <span class="w-12 h-12 rounded-full bg-primary/5 text-primary flex items-center justify-center mx-auto mb-4">
+            <UIcon name="i-heroicons-clock" class="w-6 h-6" />
+          </span>
+          <h4 class="font-display text-lg text-gray-900 mb-2">Horaires flexibles</h4>
+          <p class="text-sm text-gray-500 leading-relaxed">Des cours adaptés à votre emploi du temps.</p>
         </div>
         <div class="text-center">
-          <UIcon name="i-heroicons-academic-cap" class="w-8 h-8 text-gray-800 mx-auto mb-3" />
-          <h4 class="font-semibold text-gray-900 mb-2">Instructeurs Qualifiés</h4>
-          <p class="text-sm text-gray-600">Équipe professionnelle et expérimentée</p>
+          <span class="w-12 h-12 rounded-full bg-primary/5 text-primary flex items-center justify-center mx-auto mb-4">
+            <UIcon name="i-heroicons-academic-cap" class="w-6 h-6" />
+          </span>
+          <h4 class="font-display text-lg text-gray-900 mb-2">Instructeurs qualifiés</h4>
+          <p class="text-sm text-gray-500 leading-relaxed">Une équipe professionnelle et expérimentée.</p>
         </div>
       </div>
     </div>
