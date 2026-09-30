@@ -39,7 +39,7 @@ export const tarifSections = [
         title: 'Cours propriétaires',
         icon: 'i-chc-horse-profile',
         items: [
-          { label: 'Particulier (enfants et adultes)', price: '30 €' },
+          { label: 'Particulier (enfants et adultes)', price: '40 €' },
           { label: 'Collectif (enfants et adultes)', price: '20 €' }
         ],
         note: 'Perfectionnement avec votre propre cheval'

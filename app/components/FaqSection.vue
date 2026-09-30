@@ -1,5 +1,12 @@
 <script setup>
 const open = ref(0)
+
+// Si la réponse s'ouvre sous le bas de l'écran, on la fait apparaître (après l'animation d'ouverture)
+const toggle = (i) => {
+  open.value = open.value === i ? -1 : i
+  if (open.value !== i) return
+  setTimeout(() => bringIntoView(document.getElementById(`faq-item-${i}`)), 320)
+}
 </script>
 
 <template>
@@ -19,6 +26,7 @@ const open = ref(0)
       <div v-reveal="150" class="flex flex-col gap-2">
         <div
           v-for="(item, i) in faqItems"
+          :id="`faq-item-${i}`"
           :key="item.q"
           class="rounded-2xl bg-white ring-1 ring-ink-900/5 transition-shadow duration-300"
           :class="{ 'shadow-[0_20px_40px_-24px_rgba(6,20,27,0.3)]': open === i }"
@@ -30,7 +38,7 @@ const open = ref(0)
               class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-ink-900 cursor-pointer"
               :aria-expanded="open === i"
               :aria-controls="`faq-a-${i}`"
-              @click="open = open === i ? -1 : i"
+              @click="toggle(i)"
             >
               {{ item.q }}
               <span

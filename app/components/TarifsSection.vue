@@ -1,6 +1,15 @@
 <script setup>
 const activeKey = useTarifTab()
 
+// Sur mobile les cartes sont sous les onglets : on les fait apparaître si elles sont hors écran
+const selectTab = async (key) => {
+  activeKey.value = key
+  if (!isMobileLayout()) return
+  await nextTick()
+  const panel = document.getElementById(`panel-${key}`).getBoundingClientRect()
+  if (panel.bottom > window.innerHeight) scrollToTarifTabs()
+}
+
 const notes = [
   { icon: 'i-ph-gift-duotone', text: '20 % de réduction famille sur la cotisation' },
   { icon: 'i-ph-info-duotone', text: 'Prix hors cotisation annuelle et licence FFE' }
@@ -21,6 +30,7 @@ const notes = [
         <div
           v-reveal="120"
           class="flex w-full lg:w-auto shrink-0 overflow-x-auto rounded-full bg-white p-1.5 ring-1 ring-ink-900/10 [scrollbar-width:none]"
+          id="tarifs-onglets"
           role="tablist"
           aria-label="Catégories de tarifs"
         >
@@ -34,7 +44,7 @@ const notes = [
             :aria-controls="`panel-${section.key}`"
             class="relative flex-1 lg:flex-none whitespace-nowrap rounded-full px-3.5 md:px-5 py-2.5 text-sm font-semibold transition-colors duration-300 cursor-pointer"
             :class="activeKey === section.key ? 'text-white' : 'text-ink-900/60 hover:text-ink-900'"
-            @click="activeKey = section.key"
+            @click="selectTab(section.key)"
           >
             <span
               v-if="activeKey === section.key"

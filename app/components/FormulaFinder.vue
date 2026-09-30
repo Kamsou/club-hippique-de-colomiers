@@ -61,6 +61,15 @@ const profiles = [
 ]
 
 const selected = ref(profiles[1].key)
+const result = ref(null)
+
+// Sur mobile la recommandation est sous la liste : on la fait apparaître à l'écran
+const select = async (key) => {
+  selected.value = key
+  if (!isMobileLayout()) return
+  await nextTick()
+  bringIntoView(result.value)
+}
 const current = computed(() => profiles.find((p) => p.key === selected.value))
 </script>
 
@@ -88,7 +97,7 @@ const current = computed(() => profiles.find((p) => p.key === selected.value))
             :class="selected === p.key
               ? 'bg-white text-ink-950'
               : 'bg-white/5 text-white/80 ring-1 ring-white/10 hover:bg-white/10 hover:text-white'"
-            @click="selected = p.key"
+            @click="select(p.key)"
           >
             <span
               class="size-11 shrink-0 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:-rotate-6"
@@ -100,13 +109,13 @@ const current = computed(() => profiles.find((p) => p.key === selected.value))
             <UIcon
               name="i-ph-arrow-right-bold"
               class="size-5 transition-all duration-300"
-              :class="selected === p.key ? 'opacity-100 text-brand-500' : 'opacity-0 -translate-x-2'"
+              :class="selected === p.key ? 'opacity-100 text-brand-500 rotate-90 lg:rotate-0' : 'opacity-0 -translate-x-2'"
             />
           </button>
         </div>
 
         <!-- Recommandation -->
-        <div v-reveal="200" aria-live="polite">
+        <div ref="result" v-reveal="200" aria-live="polite">
           <Transition
             mode="out-in"
             enter-active-class="transition duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
