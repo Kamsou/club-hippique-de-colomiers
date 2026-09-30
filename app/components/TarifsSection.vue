@@ -1,253 +1,126 @@
 <script setup>
-const tarifSections = {
-  adhesion: {
-    title: 'Adhésion & Licences',
-    subtitle: 'Cotisations et licences obligatoires',
-    tarifs: [
-      {
-        title: 'Cotisation annuelle',
-        items: [
-          { label: 'Adulte', price: '165 €' },
-          { label: 'Enfant', price: '150 €' },
-          { label: 'Externe', price: '180 €' }
-        ],
-        note: 'Réduction de 20% pour les membres de la même famille',
-        noteIcon: 'i-heroicons-gift',
-        highlight: { text: 'Populaire', color: 'green' }
-      },
-      {
-        title: 'Licence FFE',
-        items: [
-          { label: 'Majeur', price: '40 €' },
-          { label: 'Mineur', price: '29 €' }
-        ],
-        note: 'Obligatoire pour participer aux compétitions',
-        noteIcon: 'i-heroicons-document-check'
-      }
-    ]
-  },
-  cours: {
-    title: 'Cours',
-    subtitle: 'Formules adaptées à tous les niveaux',
-    tarifs: [
-      {
-        title: 'Cours Poney Club',
-        items: [
-          { label: 'Trimestre (1 cours/sem.)', price: '220 €' },
-          { label: 'Année (1 cours/sem.)', price: '660 €' },
-          { label: 'Année (2 cours/sem.)', price: '1250 €' }
-        ],
-        highlight: { text: 'Enfants', color: 'blue' }
-      },
-      {
-        title: 'Cours Petits Jockeys',
-        items: [
-          { label: 'Année', price: '500 €' },
-          { label: 'Unité', price: '15 €' }
-        ],
-        highlight: { text: '4-6 ans', color: 'pink' },
-        note: 'Première approche ludique pour les tout-petits',
-        noteIcon: 'i-heroicons-heart'
-      },
-      {
-        title: 'Cours particuliers',
-        items: [
-          { label: 'À la séance', price: '40 €' },
-          { label: 'Carte 10 cours', price: '350 €' }
-        ],
-        note: 'Progression personnalisée et accélérée',
-        noteIcon: 'i-heroicons-star'
-      },
-      {
-        title: 'Cours propriétaires',
-        items: [
-          { label: 'Particulier (enfants et adultes)', price: '30 €' },
-          { label: 'Collectif (enfants et adultes)', price: '20 €' }
-        ],
-        note: 'Perfectionnement avec votre propre cheval',
-        noteIcon: 'i-heroicons-academic-cap'
-      }
-    ]
-  },
-  stages: {
-    title: 'Stages',
-    subtitle: 'Formules à la carte pendant les vacances',
-    tarifs: [
-      {
-        title: 'Adhérents',
-        items: [
-          { label: 'Demi-journée', price: '35 €' },
-          { label: 'Journée', price: '65 €' },
-          { label: '5 demi-journées', price: '160 €' },
-          { label: '5 journées', price: '300 €' }
-        ],
-        highlight: { text: 'Adhérents', color: 'green' },
-        note: 'Tarifs préférentiels pour nos adhérents',
-        noteIcon: 'i-heroicons-star'
-      },
-      {
-        title: 'Non-adhérents',
-        items: [
-          { label: 'Demi-journée', price: '40 €' },
-          { label: 'Journée', price: '70 €' },
-          { label: '5 demi-journées', price: '180 €' },
-          { label: '5 journées', price: '320 €' }
-        ],
-        highlight: { text: 'Non-adhérents', color: 'gray' },
-        note: 'Accessible à tous, avec ou sans adhésion',
-        noteIcon: 'i-heroicons-user-group'
-      }
-    ]
-  },
-  pensions: {
-    title: 'Pensions & Locations',
-    subtitle: 'Hébergement et locations pour vos équidés',
-    tarifs: [
-      {
-        title: 'Pensions équidés',
-        items: [
-          { label: 'Box + Paddock', price: '450 € / mois' },
-          { label: 'Pré (troupeau)', price: '300 € / mois' }
-        ],
-        note: 'Soins et alimentation inclus',
-        noteIcon: 'i-heroicons-heart'
-      },
-      {
-        title: 'Location équidé',
-        items: [
-          { label: 'Pension complète', price: '600 € / mois' },
-          { label: 'Demi-pension', price: '300 € / mois' }
-        ],
-        highlight: { text: 'Flexible', color: 'amber' }
-      }
-    ]
-  }
-}
+const activeKey = useTarifTab()
 
-const getIconForSection = (title) => {
-  const iconMap = {
-    'Cotisation annuelle': 'i-heroicons-identification',
-    'Licence FFE': 'i-heroicons-document-text',
-    'Cours Poney Club': 'i-heroicons-users',
-    'Cours Petits Jockeys': 'i-heroicons-face-smile',
-    'Cours particuliers': 'i-heroicons-user',
-    'Pensions équidés': 'i-heroicons-home',
-    'Location équidé': 'i-heroicons-calendar',
-    'Cours propriétaires': 'i-heroicons-academic-cap',
-    'Adhérents': 'i-heroicons-sun',
-    'Non-adhérents': 'i-heroicons-sun'
-  }
-  return iconMap[title] || 'i-heroicons-currency-euro'
-}
+const notes = [
+  { icon: 'i-ph-gift-duotone', text: '20 % de réduction famille sur la cotisation' },
+  { icon: 'i-ph-info-duotone', text: 'Prix hors cotisation annuelle et licence FFE' }
+]
 </script>
 
-
 <template>
-  <section id="tarifs" class="py-24 bg-gradient-to-br from-[#F4F1EE] to-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-      <!-- Header -->
-      <div class="text-center mb-16 max-w-2xl mx-auto">
-        <div class="mb-5">
-          <span class="text-primary tracking-[0.12em] text-xs font-medium">Nos tarifs</span>
+  <section class="bg-sand-100 px-5 md:px-10 py-20 md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
+        <div>
+          <h2 v-reveal="80" class="font-display text-4xl md:text-5xl tracking-[-0.03em] leading-[1.02] text-ink-900">
+            Tarifs <span class="text-brand-500">{{ TARIF_SEASON }}</span>
+          </h2>
         </div>
-        <h2 class="font-display text-4xl md:text-5xl text-gray-900 tracking-tight">
-          Tarifs <span class="italic">2026-2027</span>
-        </h2>
-        <p class="mt-5 text-lg text-gray-500">
-          Des tarifs transparents et adaptés à tous les niveaux.
-        </p>
-      </div>
 
-      <!-- Sections de tarifs -->
-      <div class="space-y-16">
+        <!-- Onglets -->
         <div
-          v-for="(section, key) in tarifSections"
-          :key="key"
-          class="space-y-6"
+          v-reveal="120"
+          class="flex w-full lg:w-auto shrink-0 overflow-x-auto rounded-full bg-white p-1.5 ring-1 ring-ink-900/10 [scrollbar-width:none]"
+          role="tablist"
+          aria-label="Catégories de tarifs"
         >
-          <!-- Section Header -->
-          <div class="text-center mb-8">
-            <h3 class="font-display text-2xl md:text-3xl text-gray-900 mb-2">
-              {{ section.title }}
-            </h3>
-            <p class="text-gray-500">
-              {{ section.subtitle }}
-            </p>
-          </div>
+          <button
+            v-for="section in tarifSections"
+            :id="`tab-${section.key}`"
+            :key="section.key"
+            type="button"
+            role="tab"
+            :aria-selected="activeKey === section.key"
+            :aria-controls="`panel-${section.key}`"
+            class="relative flex-1 lg:flex-none whitespace-nowrap rounded-full px-3.5 md:px-5 py-2.5 text-sm font-semibold transition-colors duration-300 cursor-pointer"
+            :class="activeKey === section.key ? 'text-white' : 'text-ink-900/60 hover:text-ink-900'"
+            @click="activeKey = section.key"
+          >
+            <span
+              v-if="activeKey === section.key"
+              class="absolute inset-0 rounded-full bg-brand-500 tab-pill"
+              aria-hidden="true"
+            />
+            <span class="relative">{{ section.title }}</span>
+          </button>
+        </div>
+      </div>
 
-          <!-- Tarifs Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr max-w-4xl mx-auto">
-            <div
-              v-for="tarif in section.tarifs"
-              :key="tarif.title"
-              class="bg-white rounded-2xl border border-gray-200/80 hover:border-primary/30 hover:shadow-xl hover:shadow-gray-200/60 transition duration-300 overflow-hidden flex flex-col h-full"
-            >
-              <div class="px-5 py-5 border-b border-gray-100">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-3">
-                    <span class="w-9 h-9 rounded-lg bg-primary/5 text-primary flex items-center justify-center shrink-0">
-                      <UIcon :name="getIconForSection(tarif.title)" class="w-5 h-5" />
-                    </span>
-                    <h4 class="font-display text-lg leading-tight text-gray-900">
-                      {{ tarif.title }}
-                    </h4>
-                  </div>
-                  <UBadge v-if="tarif.highlight" :color="tarif.highlight.color" variant="subtle" class="text-xs">
-                    {{ tarif.highlight.text }}
-                  </UBadge>
-                </div>
-              </div>
-
-              <div class="px-6 py-6 flex-grow">
-                <div class="space-y-1">
-                  <div
-                    v-for="item in tarif.items"
-                    :key="item.label"
-                    class="flex justify-between items-center py-2.5 px-3 border-b border-gray-50 last:border-0"
-                  >
-                    <span class="text-gray-600">{{ item.label }}</span>
-                    <span class="font-display text-lg text-primary whitespace-nowrap pl-3">{{ item.price }}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div v-if="tarif.note" class="px-4 border-t border-gray-200 mt-auto">
-                <UAlert
-                  :title="tarif.note"
-                  :icon="tarif.noteIcon || 'i-heroicons-information-circle'"
-                  color="blue"
-                  variant="subtle"
-                  class="border-0 flex items-center justify-center gap-4 text-center my-4"
-                />
-              </div>
+      <!-- Tous les onglets restent dans le HTML (lisibles par Google), seul l'actif est affiché -->
+      <Transition
+        v-for="section in tarifSections"
+        :key="section.key"
+        enter-active-class="transition duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        enter-from-class="opacity-0 translate-y-4"
+      >
+        <div
+          v-show="activeKey === section.key"
+          :id="`panel-${section.key}`"
+          role="tabpanel"
+          :aria-labelledby="`tab-${section.key}`"
+          class="-mx-5 px-5 -my-2 py-2 flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden md:my-0 md:py-0 scroll-px-5 [scrollbar-width:none] gap-3 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:overflow-visible md:gap-4"
+          :class="section.tarifs.length > 2 ? 'lg:grid-cols-4' : ''"
+        >
+          <article
+            v-for="tarif in section.tarifs"
+            :key="tarif.title"
+            class="group relative flex w-[85%] shrink-0 snap-start flex-col rounded-[1.75rem] bg-white p-6 md:w-auto ring-1 ring-ink-900/5 transition-shadow duration-500 hover:shadow-[0_30px_60px_-30px_rgba(6,20,27,0.35)]"
+          >
+            <div class="flex items-start justify-between gap-3">
+              <span class="size-11 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center transition-all duration-500 group-hover:bg-brand-500 group-hover:text-white group-hover:-rotate-6">
+                <UIcon :name="tarif.icon" class="size-6" />
+              </span>
+              <span v-if="tarif.tag" class="rounded-full bg-prairie-100 text-prairie-600 px-3 py-1 text-xs font-semibold">
+                {{ tarif.tag }}
+              </span>
             </div>
-          </div>
-        </div>
-      </div>
+            <h3 class="mt-4 font-display text-2xl tracking-[-0.02em] leading-none text-ink-900">{{ tarif.title }}</h3>
 
-      <div class="mt-20 pt-16 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div class="text-center">
-          <span class="w-12 h-12 rounded-full bg-primary/5 text-primary flex items-center justify-center mx-auto mb-4">
-            <UIcon name="i-heroicons-gift" class="w-6 h-6" />
-          </span>
-          <h4 class="font-display text-lg text-gray-900 mb-2">Réduction famille</h4>
-          <p class="text-sm text-gray-500 leading-relaxed">Profitez de <strong class="text-primary font-medium">20% de réduction</strong> sur la cotisation annuelle pour tous les membres d'une même famille.</p>
+            <dl class="mt-4 flex-1">
+              <div
+                v-for="item in tarif.items"
+                :key="item.label"
+                class="flex items-baseline gap-3 py-2"
+              >
+                <dt class="text-sm text-ink-900/70" :class="{ 'lg:text-[13px]': section.tarifs.length > 2 }">{{ item.label }}</dt>
+                <span
+                  class="flex-1 min-w-4 border-b-2 border-dotted border-ink-900/15 -translate-y-1"
+                  :class="{ 'lg:invisible lg:min-w-0': section.tarifs.length > 2 }"
+                  aria-hidden="true"
+                />
+                <dd class="font-display text-xl text-ink-900 whitespace-nowrap">
+                  {{ item.price }}<span v-if="item.unit" class="text-sm font-sans font-medium text-ink-900/50">&nbsp;{{ item.unit }}</span>
+                </dd>
+              </div>
+            </dl>
+
+            <p v-if="tarif.note" class="mt-3 flex items-start gap-2 text-sm font-medium text-prairie-600">
+              <UIcon name="i-ph-star-four-fill" class="size-3.5 mt-0.5 shrink-0" />
+              {{ tarif.note }}
+            </p>
+          </article>
         </div>
-        <div class="text-center">
-          <span class="w-12 h-12 rounded-full bg-primary/5 text-primary flex items-center justify-center mx-auto mb-4">
-            <UIcon name="i-heroicons-clock" class="w-6 h-6" />
+      </Transition>
+
+      <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+        <li v-for="note in notes" :key="note.text" class="flex items-center gap-2.5 text-sm font-medium text-ink-900/75">
+          <span class="size-8 rounded-full bg-white text-brand-500 flex items-center justify-center">
+            <UIcon :name="note.icon" class="size-5" />
           </span>
-          <h4 class="font-display text-lg text-gray-900 mb-2">Horaires flexibles</h4>
-          <p class="text-sm text-gray-500 leading-relaxed">Des cours adaptés à votre emploi du temps.</p>
-        </div>
-        <div class="text-center">
-          <span class="w-12 h-12 rounded-full bg-primary/5 text-primary flex items-center justify-center mx-auto mb-4">
-            <UIcon name="i-heroicons-academic-cap" class="w-6 h-6" />
-          </span>
-          <h4 class="font-display text-lg text-gray-900 mb-2">Instructeurs qualifiés</h4>
-          <p class="text-sm text-gray-500 leading-relaxed">Une équipe professionnelle et expérimentée.</p>
-        </div>
-      </div>
+          {{ note.text }}
+        </li>
+      </ul>
     </div>
   </section>
 </template>
+
+<style scoped>
+@keyframes pill-in {
+  from { transform: scale(0.85); opacity: 0.4; }
+  to { transform: none; opacity: 1; }
+}
+
+.tab-pill {
+  animation: pill-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+</style>

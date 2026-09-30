@@ -2,7 +2,8 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
 
   /* Couleur de marque - Club Hippique de Colomiers (#0073a8) */
   --color-brand-50: #f0f9fd;
@@ -16,4 +17,79 @@
   --color-brand-800: #08465f;
   --color-brand-900: #0d3a4f;
   --color-brand-950: #07242f;
+
+  /* Encre - fonds sombres */
+  --color-ink-700: #1c3a4a;
+  --color-ink-800: #12303f;
+  --color-ink-900: #0b2230;
+  --color-ink-950: #06141b;
+
+  /* Sable - sol du manège */
+  --color-sand-50: #fbf8f3;
+  --color-sand-100: #f4eee4;
+  --color-sand-200: #e9dfcf;
+  --color-sand-300: #d9c9b0;
+
+  /* Prairie - vert sauge, écho à l'herbe */
+  --color-prairie-100: #e6eee2;
+  --color-prairie-200: #cfdec8;
+  --color-prairie-400: #8aab86;
+  --color-prairie-600: #54755a;
+
+  /* Beurre - touche solaire, avec parcimonie */
+  --color-butter-100: #fcf3d6;
+  --color-butter-300: #f6dc8c;
+  --color-butter-400: #f1cc5e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-sand-50);
+  color: var(--color-ink-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-brand-500);
+  color: white;
+}
+
+/* Grain photo discret sur toute la page */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Apparition au scroll (voir plugins/reveal.ts) */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

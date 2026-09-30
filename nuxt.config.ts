@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/image', '@nuxt/ui'],
   css: ['~/assets/css/main.css'],
+  icon: {
+    // Icônes dessinées pour le club : i-chc-<nom du fichier>
+    customCollections: [{ prefix: 'chc', dir: './app/assets/icons' }]
+  },
   image: {
     cloudinary: {
       baseURL: 'https://res.cloudinary.com/augalo/image/upload/'
